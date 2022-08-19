@@ -76,7 +76,7 @@ def main():
     ## generate masked genome.
     # make regions file
     logger.info("masking virus-homologous regions from the genome")
-    if sum(1 for l in open(blastn_outfile))>0):
+    if sum(1 for l in open(blastn_outfile))>0:
         df = pd.read_csv(blastn_outfile, sep="\t", header=None, usecols=[1,2,8,9])
         df.columns = ["chrom", "perid", "end5", "end3"]
     else:
