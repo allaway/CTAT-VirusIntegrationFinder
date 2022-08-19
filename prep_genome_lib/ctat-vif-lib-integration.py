@@ -85,7 +85,7 @@ def main():
     # filter, require min 90% identity
     df = df[ df['perid'] >= 90 ] 
     
-    if(len(df.index)>0):
+    if len(df.index)>0:
         df['lend'] = df.apply(lambda x: min(x['end5'], x['end3']), axis=1)
         df['rend'] = df.apply(lambda x: max(x['end5'], x['end3']), axis=1)
         df['lend'] = df['lend']-1  
