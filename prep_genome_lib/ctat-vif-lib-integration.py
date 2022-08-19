@@ -80,13 +80,11 @@ def main():
     if sum(1 for l in open(blastn_outfile))>0:
         df = pd.read_csv(blastn_outfile, sep="\t", header=None, usecols=[1,2,8,9])
         df.columns = ["chrom", "perid", "end5", "end3"]
-        
         # filter, require min 90% identity
-        df = df[ df['perid'] >= 90 ] 
- 
+        df = df[ df['perid'] >= 90 ]
         df['lend'] = df.apply(lambda x: min(x['end5'], x['end3']), axis=1)
         df['rend'] = df.apply(lambda x: max(x['end5'], x['end3']), axis=1)
-        df['lend'] = df['lend']-1  
+        df['lend'] = df['lend']-1 
         df = df[ ['chrom', 'lend', 'rend'] ]
         
     else: 
